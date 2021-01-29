@@ -1,0 +1,26 @@
+{
+  "name": "@felipebutcher/node-os-info",
+  "version": "0.0.1",
+  "description": "When I needed to get memory, cpu and disk information on NodeJS, I ended up looking for answers on stackoverflow and using multiple packages with some code. I am putting all together here.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipebutcher/node-os-info.git"
+  },
+  "keywords": [
+    "os",
+    "info",
+    "memory",
+    "cpu",
+    "node"
+  ],
+  "author": "Felipe Butcher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipebutcher/node-os-info/issues"
+  },
+  "homepage": "https://github.com/felipebutcher/node-os-info#readme"
+}
