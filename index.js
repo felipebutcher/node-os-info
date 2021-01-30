@@ -1,4 +1,7 @@
 const os = require("os");
+const si = require('systeminformation');
+const disk = require('diskusage');
+const rootPath = os.platform() === 'win32' ? 'c:' : '/';
 
 function cpuAverage() {
     var totalIdle = 0, totalTick = 0;
@@ -43,17 +46,32 @@ function getCPULoadAVG(avgTime = 1000, delay = 100) {
     });
 }
 
-exports.cpuPercent = callback => {
+exports.cpu = (callback) => {
     getCPULoadAVG(1000, 100).then((avg) => {
-        callback(avg);
+        callback(avg / 100);
     });
 }
 
-exports.cpuPercentAverage = (seconds, callback) => {
-    getCPULoadAVG(seconds * 1000, 100).then((avg) => {
-        callback(avg);
+exports.mem = (callback) => {
+    si.mem((mem) => {
+        let memoryUsage = mem.active / mem.total;
+        callback(
+            Math.round(memoryUsage * 100) / 100
+        );
     });
 }
 
+exports.disk = (callback) => {
+    disk.check(rootPath, function (err, info) {
+        if (err) {
+            console.log(err);
+            callback(-1);
+        } else {
+            let used = info.total - info.free;
+            let diskUsage = used / info.total;
+            callback(Math.round(diskUsage * 100) / 100);
+        }
+    });
+}
 
 
