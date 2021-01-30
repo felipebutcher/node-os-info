@@ -3,7 +3,7 @@ const si = require('systeminformation');
 const disk = require('diskusage');
 const rootPath = os.platform() === 'win32' ? 'c:' : '/';
 
-function cpuAverage() {
+const cpuAverage = () => {
     var totalIdle = 0, totalTick = 0;
     var cpus = os.cpus();
     for (var i = 0, len = cpus.length; i < len; i++) {
@@ -16,14 +16,14 @@ function cpuAverage() {
     return { idle: totalIdle / cpus.length, total: totalTick / cpus.length };
 }
 
-const arrAvg = function (arr) {
+const arrAvg = (arr) => {
     if (arr && arr.length >= 1) {
         const sumArr = arr.reduce((a, b) => a + b, 0)
         return sumArr / arr.length;
     }
 };
 
-function getCPULoadAVG(avgTime = 1000, delay = 100) {
+const getCPULoadAVG = (avgTime = 1000, delay = 100) => {
     return new Promise((resolve, reject) => {
         const n = ~~(avgTime / delay);
         if (n <= 1) {
