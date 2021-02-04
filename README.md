@@ -27,7 +27,7 @@ osInfo.mem(memory => {
 });
 
 osInfo.cpu(cpu => {
-    console.log("CPU: " + Math.round(memory * 100) + "%");
+    console.log("CPU: " + Math.round(cpu * 100) + "%");
 });
 
 osInfo.disk(disk => {
