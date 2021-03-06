@@ -62,7 +62,7 @@ exports.mem = (callback) => {
 }
 
 exports.disk = (callback) => {
-    disk.check(rootPath, function (err, info) {
+    disk.check(process.cwd(), function (err, info) {
         if (err) {
             console.log(err);
             callback(-1);
