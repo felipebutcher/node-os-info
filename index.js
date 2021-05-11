@@ -1,7 +1,7 @@
 const os = require("os");
-const si = require('systeminformation');
-const disk = require('diskusage');
-const rootPath = os.platform() === 'win32' ? 'c:' : '/';
+const si = require("systeminformation");
+const checkDiskSpace = require("check-disk-space");
+const rootPath = os.platform() === "win32" ? "c:" : "/";
 
 const cpuAverage = () => {
     var totalIdle = 0, totalTick = 0;
@@ -27,7 +27,7 @@ const getCPULoadAVG = (avgTime = 1000, delay = 100) => {
     return new Promise((resolve, reject) => {
         const n = ~~(avgTime / delay);
         if (n <= 1) {
-            reject('Error: interval to small');
+            reject("Error: interval too small");
         }
         let i = 0;
         let samples = [];
@@ -62,16 +62,11 @@ exports.mem = (callback) => {
 }
 
 exports.disk = (callback) => {
-    disk.check(process.cwd(), function (err, info) {
-        if (err) {
-            console.log(err);
-            callback(-1);
-        } else {
-            let used = info.total - info.free;
-            let diskUsage = used / info.total;
-            callback(Math.round(diskUsage * 100) / 100);
-        }
-    });
+    checkDiskSpace(rootPath).then((diskSpace) => {
+        let used = diskSpace.size - diskSpace.free;
+        callback(
+            Math.round(used / diskSpace.size * 100) / 100    
+        );
+    })
 }
-
 
