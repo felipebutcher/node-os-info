@@ -1,7 +1,7 @@
 const os = require("os");
 const si = require("systeminformation");
 const checkDiskSpace = require("check-disk-space");
-const rootPath = os.platform() === "win32" ? "c:" : "/";
+const currentPath = process.cwd();
 
 const cpuAverage = () => {
     var totalIdle = 0, totalTick = 0;
@@ -62,7 +62,7 @@ exports.mem = (callback) => {
 }
 
 exports.disk = (callback) => {
-    checkDiskSpace(rootPath).then((diskSpace) => {
+    checkDiskSpace(currentPath).then((diskSpace) => {
         let used = diskSpace.size - diskSpace.free;
         callback(
             Math.round(used / diskSpace.size * 100) / 100    
