@@ -8,7 +8,7 @@ The values that this package show are the same as in htop, which were what I was
 This project uses [this code](https://gist.github.com/GaetanoPiazzolla/c40e1ebb9f709d091208e89baf9f4e00) for CPU calculation.     
 We also use [NodeJS OS](https://nodejs.org/api/os.html) module.  
 The packages [systeminformation](https://github.com/sebhildebrandt/systeminformation) and
-[node-diskusage](https://github.com/jduncanator/node-diskusage) are used for memory and disk calculation.
+[check-disk-space](https://github.com/Alex-D/check-disk-space) are used for memory and disk calculation.
 
 
 ## Installation
